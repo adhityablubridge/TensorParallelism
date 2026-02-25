@@ -15,8 +15,7 @@
 // #include <nvtx3/nvtx3.hpp>
 // #include <nvtx3/nvToolsExt.h>
 #include "process_group/fused_transpose_kernel.cuh"
-#include "process_group/shard_fused_transpose_kernel.cuh"
-#include "process_group/fused_rotate_kernel.cuh"
+
 // #include "process_group/fused_transpose_kernel.cuh"
 
 // =============================================================================

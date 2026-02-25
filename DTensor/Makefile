@@ -221,7 +221,7 @@ clean:
 
 # Tensor Parallel MLP Example
 
-CUDA_SRCS =  process_group/fused_transpose_kernel.cu process_group/shard_fused_transpose_kernel.cu dnn/dist_grad_norm_kernels.cu
+CUDA_SRCS =  process_group/fused_transpose_kernel.cu  dnn/dist_grad_norm_kernels.cu
 CUDA_OBJS = $(CUDA_SRCS:.cu=.o)
 
 TP_MLP_SRCS = \
@@ -512,7 +512,7 @@ GPT2_ENTROPY_PARALLEL_TEST_SRCS = \
     process_group/processGroupNccl.cpp \
     tensor/placement.cpp
 
-GPT2_ENTROPY_PARALLEL_TEST_OBJS = $(GPT2_ENTROPY_PARALLEL_TEST_SRCS:.cpp=.o) $(CUDA_OBJS) TrainingScripts/EntropyKernels.o
+GPT2_ENTROPY_PARALLEL_TEST_OBJS = $(GPT2_ENTROPY_PARALLEL_TEST_SRCS:.cpp=.o) $(CUDA_OBJS) dnn/EntropyKernels.o
 
 gpt2_entropy_parallel_test: $(GPT2_ENTROPY_PARALLEL_TEST_OBJS) $(TENSOR_LIB_A)
 	@echo "\n[LINKING] Creating example executable: $@"
@@ -528,7 +528,7 @@ GPT2_TP_TEST_SRCS = \
     process_group/processGroupNCCL.cpp \
     tensor/placement.cpp
 
-GPT2_TP_TEST_OBJS = $(GPT2_TP_TEST_SRCS:.cpp=.o) $(CUDA_OBJS) TrainingScripts/EntropyKernels.o Tensor-Implementations/src/Kernels/cuda/MultiTensorKernels.o
+GPT2_TP_TEST_OBJS = $(GPT2_TP_TEST_SRCS:.cpp=.o) $(CUDA_OBJS) dnn/EntropyKernels.o Tensor-Implementations/src/Kernels/cuda/MultiTensorKernels.o
 
 gpt2_tp_test: $(GPT2_TP_TEST_OBJS) $(TENSOR_LIB_A)
 	@echo "\n[LINKING] Creating example executable: gpt2_tp_test_exec"
@@ -546,7 +546,7 @@ GPT2_TP_MLP_TEST_SRCS = \
 # GPT2_CUDA_SRCS = dnn/dist_grad_norm_kernels.cu
 # CUDA_OBJS = $(GPT2_CUDA_SRCS:.cu = .o)
 
-GPT2_TP_MLP_TEST_OBJS = $(GPT2_TP_MLP_TEST_SRCS:.cpp=.o) $(CUDA_OBJS) TrainingScripts/EntropyKernels.o  Tensor-Implementations/src/Kernels/cuda/MultiTensorKernels.o
+GPT2_TP_MLP_TEST_OBJS = $(GPT2_TP_MLP_TEST_SRCS:.cpp=.o) $(CUDA_OBJS) dnn/EntropyKernels.o  Tensor-Implementations/src/Kernels/cuda/MultiTensorKernels.o
 
 
 gpt2_tp_mlp_test: $(GPT2_TP_MLP_TEST_OBJS) $(TENSOR_LIB_A)

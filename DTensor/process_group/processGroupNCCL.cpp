@@ -7,7 +7,7 @@
 #include <chrono>
 #include <execution>
 // #include "DataParallel.hpp"
-#include "/home/blu-bridge25/Study/Code/TensorParallelismBeta/DTensor/process_group/ProcessGroupNCCL.h"
+#include "process_group/ProcessGroupNCCL.h"
  
 
 

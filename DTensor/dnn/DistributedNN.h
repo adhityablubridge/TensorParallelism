@@ -15,9 +15,9 @@
 #include "ops/helpers/GradNormKernels.h"
 #include <cuda_runtime.h>
 #include <cmath>
-#include "mlp/WeightInit.h"
+// #include "mlp/WeightInit.h"
 #include "dnn/dist_grad_norm_kernels.h"
-#include "TrainingScripts/EntropyKernels.h"
+#include "dnn/EntropyKernels.h"
 #include "ops/helpers/MultiTensorKernels.h"
 
 namespace OwnTensor {

@@ -26,26 +26,18 @@ fi
 echo -e "\n>>> Processing parent repository"
 cd ../.. || { echo "Error: Could not return to parent directory"; exit 1; }
 
-# ENSURE LFS TRACKING (Pre-emptive)
-echo "Ensuring LFS tracking for large binaries and logs..."
-git lfs track "*.nsys-rep" "*.sqlite" "*.bin" "*.pt" "*_exec" \
-             "DTensor/TP_MLP_Training_logs/**" \
-             "DTensor/gpt2_tp_test/TP_MLP_Torch_Logs/**" > /dev/null
+
 git add .gitattributes
 if [[ -n $(git status --porcelain) ]]; then
     echo "Staging and committing parent repository changes..."
     git add .
     git commit -m "$COMMIT_MESSAGE"
 
-    # CRITICAL: Migrate the commit just made to ensure binaries are LFS pointers
-    echo "Migrating large files to LFS pointers..."
-    git lfs migrate import --include-ref=_adhi_ --include="*.nsys-rep,*.sqlite,*.bin,*.pt,*_exec,DTensor/TP_MLP_Training_logs/**,DTensor/gpt2_tp_test/TP_MLP_Torch_Logs/**" --yes
 
-    echo "Pushing parent repository changes to branch _adhi_..."
+    echo "Pushing parent repository changes to branch TensorParallelism..."
     # Use --force because migrate rewrites the local commit history
-    git push origin _adhi_ --force
+    git push origin Tensor_Parallelism --force
 else
     echo "No changes detected in parent repository."
 fi
 
-echo -e "\n>>> All done!"
